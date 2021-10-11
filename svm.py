@@ -36,7 +36,7 @@ X_train, X_test, y_train, y_test = train_test_split(inputs, targets, test_size=f
 #print(y_train)
 
 # Save and load temporarily (optional)
-# np.save('./data.npy', (X_train, X_test, y_train, y_test))
+np.save('./data.npy', (X_train, X_test, y_train, y_test))
 X_train, X_test, y_train, y_test = np.load('./data.npy', allow_pickle=True)
 #print(np.save)
 #print(X_test)
