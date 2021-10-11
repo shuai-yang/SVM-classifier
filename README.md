@@ -2,7 +2,7 @@
 This is step-by-step a practice to create a simple SVM classifier for a binary classification scenario using Scikit-learn.
 ## Steps
 ### (1) Generating a dataset
-![](images/Figure_1.JPG)
+![](images/Figure_1.png)
 ### (2) Building the SVM classifier
 - Choosing a kernel function <br/>
 - Fitting training data to the classifier <br/>
