@@ -4,8 +4,7 @@ import numpy as np
 import matplotlib as plot
 '''
 import nltk
-from nltk.tokenize import word_tokenize, sent_tokenize
-import pandas as pd
+from nltk.tokenize import word_tokenize, sent_tokenize, TweetTokenizer
 '''
 nltk.download('wordnet') # WordNet is a lexical database for the English language
 nltk.download('stopwords')
@@ -14,12 +13,36 @@ nltk.download('punkt')
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+
+class mapping:
+    def __init__(self):
+       self.d = {}
+    def add(self, k, v):
+       self.d[k] = v
+       self.d[v] = k
+    def remove(self, k):
+       self.d.pop(self.d.pop(k))
+    def get(self, k):
+       return self.d[k]
 '''
 
-import preprocessor as p # $ pip install tweet-preprocessor
-df = pd.read_csv('samples.txt')
-print(df.head())
-#sent_text = nltk.sent_tokenize(texts) # this gives us a list of sentences
+
+import pandas as pd
+def generateDataframe(textsFileName):
+   df = pd.read_csv(inputFilename, header=None, sep="\n", names=['userTweets'] ) #separator is \n
+   df['userID'] = df.index + 1
+   df = df[[ 'userID','userTweets']]
+   #print(df)
+   return df
+def generateUserToScoreMapping(scoresFileName):
+   scores = pd.read_csv('score.txt', header=None, sep="\n", names=['userScores'] ) #separator is \n
+   scores['userID'] = df.index + 1
+   scores = scores[[ 'userID','userScores']]
+   #print(scores)
+   return scores
+df = generateDataframe('texts.txt')
+scores = generateUserToScoreMapping('scores.txt')
+
 
 '''
 tokens = p.tokenize('Preprocessor is #awesome 👍 @tweeter https://github.com/s/preprocessor')
