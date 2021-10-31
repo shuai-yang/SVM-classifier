@@ -14,7 +14,7 @@ centers = [(0,0), (5,5)]
 # The lower, the more condensed the clusters are
 cluster_std = 1
 # The fraction of the test split shows what percentage of our data is used for testing purposes
-frac_test_split = 0.33
+frac_test_split = 0.2
 # The number of features for samples shows the number of classes we wish to generate data for
 # For binary classifier, that is 2 classes
 num_features_for_samples = 2
@@ -25,7 +25,9 @@ num_samples_total = 1000
 # Call make_blobs with the configuration options
 # Variable inputs will store the features and variable targets will store class outcomes
 inputs, targets = make_blobs(n_samples = num_samples_total, centers = centers, n_features = num_features_for_samples, cluster_std = cluster_std)
-
+print(inputs) # array([1,0,])
+print(len(input))
+print(len(targets))
 # Split the inputs and targets into training and testing data.
 X_train, X_test, y_train, y_test = train_test_split(inputs, targets, test_size=frac_test_split, random_state=blobs_random_seed)
 
