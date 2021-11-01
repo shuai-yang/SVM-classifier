@@ -25,26 +25,57 @@ class mapping:
     def get(self, k):
        return self.d[k]
 '''
-
+import preprocessor as prep
+#tokens = prep.tokenize('Preprocessor is #awesome 👍 @tweeter https://github.com/s/preprocessor')
+# print(tokens)  # Preprocessor is $HASHTAG$ $EMOJI$ $URL$ #char array
+#charArray = "".join(tokens) # string
+#print(tokens)
 
 import pandas as pd
-def generateDataframe(textsFileName):
-   df = pd.read_csv(inputFilename, header=None, sep="\n", names=['userTweets'] ) #separator is \n
+import preprocessor as prep
+#from IPython.display import HTML
+def getUserToTweets(textsFileName):
+   df = pd.read_csv(textsFileName, header=None, sep="\n", names=['userTweets'] ) #separator is \n
+   df['userTweetsProcessed'] = df['userTweets'].apply(TweetTokenizer)
+   pd.set_option('display.max_colwidth', None)
+   print(df)
+   #df['userTweets'] = df['userTweets'].astype(str)
+   #df['userID'] = df.index + 1
+   #df = df[[ 'userID','userTweets']]
+   '''
+   for tweet in df[]
+      userToLabel = df.set_index('userID').to_dict('userLabels')
+   return userToLabel
+   '''
+   #return df
+
+def getUserToLabel(labelsFileName):
+   df = pd.read_csv(labelsFileName, header=None, sep="\n", names=['userLabel'] ) #separator is \n
    df['userID'] = df.index + 1
-   df = df[[ 'userID','userTweets']]
-   #print(df)
-   return df
-def generateUserToScoreMapping(scoresFileName):
-   scores = pd.read_csv('score.txt', header=None, sep="\n", names=['userScores'] ) #separator is \n
-   scores['userID'] = df.index + 1
-   scores = scores[[ 'userID','userScores']]
-   #print(scores)
-   return scores
-df = generateDataframe('texts.txt')
-scores = generateUserToScoreMapping('scores.txt')
+   userToLabel = df.set_index('userID').to_dict('list')
+   return userToLabel
+   #scores['userID'] = scores.index + 1
+   #scores = scores[[ 'userID','userScores']]
+   #userToScores = mapping()
+   #for userID in df['userID']:
+   #   userToScores[userID] = scores
+   #userToScores.add(scores['userID'], scores['userScores'])
+   #return userToScores
+df = getUserToTweets('samples.txt')
+#print(df)
+#UserToLabel = getUserToLabel('labels.txt')
+#print(UserToLabel)
 
 
 '''
+
+   userToLabel = {}
+   for index in scores['userScores']:
+      print(score)
+      userToLabel[score.index] = score
+   return userToLabel 
+
+
 tokens = p.tokenize('Preprocessor is #awesome 👍 @tweeter https://github.com/s/preprocessor')
 # print(tokens)  # Preprocessor is $HASHTAG$ $EMOJI$ $URL$ #char array
 charArray = "".join(tokens) # string
